@@ -1,0 +1,72 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_run:
+    workflows: ["Fetch Financial Data"]
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp -r data _site/
+          
+          # Create a simple index.html that redirects or shows API info
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Mesqal API</title>
+            <meta charset="utf-8">
+            <style>
+              body { font-family: system-ui; max-width: 600px; margin: 40px auto; padding: 20px; }
+              code { background: #f4f4f5; padding: 2px 6px; border-radius: 4px; }
+            </style>
+          </head>
+          <body>
+            <h1>Mesqal API</h1>
+            <p>Financial data endpoint for Mesqal applications.</p>
+            <h2>Endpoints:</h2>
+            <ul>
+              <li><code>/data/dates.json</code> - List of all available dates</li>
+              <li><code>/data/2026-09-20.json</code> - Data for specific date</li>
+            </ul>
+            <p><a href="data/dates.json">View dates.json →</a></p>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
