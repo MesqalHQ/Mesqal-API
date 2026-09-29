@@ -31,7 +31,6 @@ jobs:
           
           # Fetch financial data
           FIN_API="https://api.dastyar.io/express/financial-item"
-          # Added || true so the script doesn't crash if curl fails completely (e.g., DNS error)
           FIN_RESPONSE=$(curl -s --max-time 15 "$FIN_API" || true)
           
           # Validate JSON
@@ -40,51 +39,15 @@ jobs:
             exit 1
           fi
           
-          # Fetch PAMP data
-          PAMP_API="https://amirmasoud.netlify.app/api/v1/pamp"
-          PAMP_RESPONSE=$(curl -s --max-time 15 "$PAMP_API" || true)
-          
-          PAMP_JSON=""
-          if echo "$PAMP_RESPONSE" | jq empty 2>/dev/null; then
-            PAMP_JSON="$PAMP_RESPONSE"
-            echo "✅ PAMP API successful"
-          else
-            echo "⚠️ PAMP API failed or returned invalid JSON. Falling back to latest available data..."
-            
-            FALLBACK=""
-            # 1. Check current file first (in case we already have a successful snapshot from earlier today)
-            if [ -f "$FILE" ] && [ -s "$FILE" ]; then
-              FALLBACK=$(jq -c '.[-1].pamp | select(. != null)' "$FILE" 2>/dev/null || true)
-            fi
-            
-            # 2. If not found, check the latest previous file using find (safer than ls)
-            if [ -z "$FALLBACK" ]; then
-              PREV_FILE=$(find data -maxdepth 1 -type f -name "*.json" ! -name "dates.json" ! -name "$(basename "$FILE")" 2>/dev/null | sort -r | head -n 1 || true)
-              if [ -n "$PREV_FILE" ] && [ -s "$PREV_FILE" ]; then
-                FALLBACK=$(jq -c '.[-1].pamp | select(. != null)' "$PREV_FILE" 2>/dev/null || true)
-              fi
-            fi
-            
-            # 3. Apply fallback or throw a safe error object
-            if [ -n "$FALLBACK" ]; then
-              PAMP_JSON="$FALLBACK"
-              echo "✅ Fallback successful: Duplicated latest PAMP data."
-            else
-              PAMP_JSON='{"error": "PAMP API failed and no historical data available"}'
-              echo "⚠️ No historical PAMP data found to duplicate."
-            fi
-          fi
-          
           # Create file if it doesn't exist
           if [ ! -f "$FILE" ]; then
             echo "[]" > "$FILE"
           fi
           
-          # Append snapshot
+          # Append snapshot (financial data only)
           jq --arg time "$TIME" \
              --argjson financial "$FIN_RESPONSE" \
-             --argjson pamp "$PAMP_JSON" \
-             '. += [{"time": $time, "financial": $financial, "pamp": $pamp}]' \
+             '. += [{"time": $time, "financial": $financial}]' \
              "$FILE" > tmp.json && mv tmp.json "$FILE"
           
           echo "✅ Saved snapshot for $DATE $TIME"
