@@ -52,14 +52,39 @@ jobs:
             echo "[]" > "$FILE"
           fi
           
+          # Record pre-write state for diagnostics
+          PREV_COUNT=$(jq 'length' "$FILE" 2>/dev/null || echo "0")
+          
           # Append snapshot with both financial and pamp data
           jq --arg time "$TIME" \
              --argjson financial "$FIN_RESPONSE" \
              --argjson pamp "$PAMP_RESPONSE" \
              '. += [{"time": $time, "financial": $financial, "pamp": $pamp}]' \
-             "$FILE" > tmp.json && mv tmp.json "$FILE"
+             "$FILE" > tmp.json
           
-          echo "✅ Saved snapshot for $DATE $TIME"
+          # Validate jq output BEFORE overwriting original file
+          if ! jq empty tmp.json 2>/dev/null; then
+            echo "❌ jq produced invalid JSON. Aborting write."
+            echo "FIN_RESPONSE length: ${#FIN_RESPONSE}"
+            echo "PAMP_RESPONSE length: ${#PAMP_RESPONSE}"
+            rm -f tmp.json
+            exit 1
+          fi
+          
+          mv tmp.json "$FILE"
+          
+          # Post-write verification
+          NEW_COUNT=$(jq 'length' "$FILE")
+          LAST_TIME=$(jq -r '.[-1].time' "$FILE")
+          
+          if [ "$NEW_COUNT" -le "$PREV_COUNT" ] || [ "$LAST_TIME" != "$TIME" ]; then
+            echo "❌ File was not updated correctly!"
+            echo "Expected count > $PREV_COUNT, got $NEW_COUNT"
+            echo "Expected last time $TIME, got $LAST_TIME"
+            exit 1
+          fi
+          
+          echo "✅ Saved snapshot for $DATE $TIME (entries: $PREV_COUNT → $NEW_COUNT)"
 
       - name: Generate dates.json
         run: |
@@ -77,8 +102,9 @@ jobs:
           git add data/
           
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "ℹ️ No changes to commit"
           else
             git commit -m "Data snapshot $(date -u -d '+3 hours 30 minutes' +'%Y-%m-%d %H:%M')"
             git push
+            echo "✅ Committed and pushed successfully"
           fi
