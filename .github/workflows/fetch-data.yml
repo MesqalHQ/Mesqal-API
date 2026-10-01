@@ -22,7 +22,6 @@ jobs:
         run: |
           set -euo pipefail
           
-          # Tehran time using proper timezone (handles DST correctly)
           export TZ='Asia/Tehran'
           DATE=$(date +"%Y-%m-%d")
           TIME=$(date +"%H:%M:%S")
@@ -30,43 +29,52 @@ jobs:
           mkdir -p data
           FILE="data/${DATE}.json"
           
-          # --- Fetch Financial Data with retry & fail-on-error ---
-          FIN_API="https://api.dastyar.io/express/financial-item"
-          echo "📡 Fetching financial data..."
-          FIN_RESPONSE=$(curl -sfL --retry 3 --retry-delay 5 --max-time 30 "$FIN_API") || {
-            echo "❌ Failed to fetch financial API after retries"
-            exit 1
+          # --- Helper: fetch with verbose failure info ---
+          fetch_json() {
+            local url="$1"
+            local label="$2"
+            local response
+            
+            echo "📡 Fetching $label..."
+            
+            # First attempt: get HTTP metadata without -f so we can inspect
+            local http_code
+            http_code=$(curl -sL -o /tmp/response_body.txt -w "%{http_code}" \
+              --retry 3 --retry-delay 5 --max-time 30 "$url") || {
+                echo "❌ $label: curl failed (network/DNS/timeout)"
+                cat /tmp/response_body.txt 2>/dev/null | head -c 500 || true
+                return 1
+              }
+            
+            if [ "$http_code" -lt 200 ] || [ "$http_code" -ge 300 ]; then
+              echo "❌ $label: HTTP $http_code"
+              head -c 500 /tmp/response_body.txt || true
+              echo ""
+              return 1
+            fi
+            
+            response=$(cat /tmp/response_body.txt)
+            
+            if ! printf '%s' "$response" | jq empty 2>/dev/null; then
+              echo "❌ $label: Invalid JSON (HTTP $http_code)"
+              printf '%s' "$response" | head -c 500
+              echo ""
+              return 1
+            fi
+            
+            printf '%s' "$response"
           }
           
-          # Safe JSON validation (no broken pipe)
-          if ! printf '%s' "$FIN_RESPONSE" | jq empty 2>/dev/null; then
-            echo "❌ Invalid financial API JSON response:"
-            printf '%s' "$FIN_RESPONSE" | head -c 500
-            echo ""
-            exit 1
-          fi
+          # Fetch both APIs
+          FIN_RESPONSE=$(fetch_json "https://api.dastyar.io/express/financial-item" "Financial API") || exit 1
           echo "✅ Financial data validated"
           
-          # --- Fetch PAMP Data with retry & fail-on-error ---
-          PAMP_API="https://amirmasoud.netlify.app/api/v1/pamp"
-          echo "📡 Fetching PAMP data..."
-          PAMP_RESPONSE=$(curl -sfL --retry 3 --retry-delay 5 --max-time 30 "$PAMP_API") || {
-            echo "❌ Failed to fetch PAMP API after retries"
-            exit 1
-          }
-          
-          if ! printf '%s' "$PAMP_RESPONSE" | jq empty 2>/dev/null; then
-            echo "❌ Invalid PAMP API JSON response:"
-            printf '%s' "$PAMP_RESPONSE" | head -c 500
-            echo ""
-            exit 1
-          fi
+          PAMP_RESPONSE=$(fetch_json "https://amirmasoud.netlify.app/api/v1/pamp" "PAMP API") || exit 1
           echo "✅ PAMP data validated"
           
-          # Initialize file if missing
+          # Initialize and append
           [ -f "$FILE" ] || echo "[]" > "$FILE"
           
-          # Atomic append (write to temp then move)
           jq --arg time "$TIME" \
              --argjson financial "$FIN_RESPONSE" \
              --argjson pamp "$PAMP_RESPONSE" \
@@ -74,7 +82,7 @@ jobs:
              "$FILE" > tmp.json && mv tmp.json "$FILE"
           
           echo "✅ Saved snapshot for $DATE $TIME"
-
+    
       - name: Generate dates.json
         run: |
           set -euo pipefail
