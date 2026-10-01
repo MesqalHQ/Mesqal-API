@@ -1,9 +1,9 @@
 name: Fetch Financial Data
 
 on:
-  workflow_dispatch:  # Triggered by cron-job.org
+  workflow_dispatch:
   push:
-    branches: ["main"]  # Also run on push for testing
+    branches: ["main"]
 
 permissions:
   contents: write
@@ -20,40 +20,53 @@ jobs:
 
       - name: Fetch and append data
         run: |
-          set -e
+          set -euo pipefail
           
-          # Tehran time (UTC+3:30)
-          DATE=$(date -u -d "+3 hours 30 minutes" +"%Y-%m-%d")
-          TIME=$(date -u -d "+3 hours 30 minutes" +"%H:%M:%S")
+          # Tehran time using proper timezone (handles DST correctly)
+          export TZ='Asia/Tehran'
+          DATE=$(date +"%Y-%m-%d")
+          TIME=$(date +"%H:%M:%S")
           
           mkdir -p data
           FILE="data/${DATE}.json"
           
-          # Fetch financial data
+          # --- Fetch Financial Data with retry & fail-on-error ---
           FIN_API="https://api.dastyar.io/express/financial-item"
-          FIN_RESPONSE=$(curl -s "$FIN_API")
+          echo "📡 Fetching financial data..."
+          FIN_RESPONSE=$(curl -sfL --retry 3 --retry-delay 5 --max-time 30 "$FIN_API") || {
+            echo "❌ Failed to fetch financial API after retries"
+            exit 1
+          }
           
-          # Validate JSON
-          if ! echo "$FIN_RESPONSE" | jq empty 2>/dev/null; then
-            echo "❌ Invalid financial API response"
+          # Safe JSON validation (no broken pipe)
+          if ! printf '%s' "$FIN_RESPONSE" | jq empty 2>/dev/null; then
+            echo "❌ Invalid financial API JSON response:"
+            printf '%s' "$FIN_RESPONSE" | head -c 500
+            echo ""
             exit 1
           fi
+          echo "✅ Financial data validated"
           
-          # Fetch PAMP data
+          # --- Fetch PAMP Data with retry & fail-on-error ---
           PAMP_API="https://amirmasoud.netlify.app/api/v1/pamp"
-          PAMP_RESPONSE=$(curl -s "$PAMP_API")
+          echo "📡 Fetching PAMP data..."
+          PAMP_RESPONSE=$(curl -sfL --retry 3 --retry-delay 5 --max-time 30 "$PAMP_API") || {
+            echo "❌ Failed to fetch PAMP API after retries"
+            exit 1
+          }
           
-          if ! echo "$PAMP_RESPONSE" | jq empty 2>/dev/null; then
-            echo "❌ Invalid PAMP API response"
+          if ! printf '%s' "$PAMP_RESPONSE" | jq empty 2>/dev/null; then
+            echo "❌ Invalid PAMP API JSON response:"
+            printf '%s' "$PAMP_RESPONSE" | head -c 500
+            echo ""
             exit 1
           fi
+          echo "✅ PAMP data validated"
           
-          # Create file if it doesn't exist
-          if [ ! -f "$FILE" ]; then
-            echo "[]" > "$FILE"
-          fi
+          # Initialize file if missing
+          [ -f "$FILE" ] || echo "[]" > "$FILE"
           
-          # Append snapshot
+          # Atomic append (write to temp then move)
           jq --arg time "$TIME" \
              --argjson financial "$FIN_RESPONSE" \
              --argjson pamp "$PAMP_RESPONSE" \
@@ -64,23 +77,34 @@ jobs:
 
       - name: Generate dates.json
         run: |
+          set -euo pipefail
           cd data
-          # List all .json files (except dates.json), extract dates, sort descending
-          ls -1 *.json 2>/dev/null | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$' | sed 's/\.json$//' | sort -r > dates.txt
-          jq -R -s 'split("\n") | map(select(length > 0))' dates.txt > dates.json
-          rm dates.txt
+          
+          # Extract date filenames, sort descending, build JSON array
+          ls -1 *.json 2>/dev/null \
+            | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$' \
+            | sed 's/\.json$//' \
+            | sort -r \
+            | jq -R -s 'split("\n") | map(select(length > 0))' \
+            > dates.json.tmp && mv dates.json.tmp dates.json
+          
           echo "✅ Generated dates.json"
 
       - name: Commit and push
         run: |
+          set -euo pipefail
+          
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           git add data/
           
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "ℹ️ No changes to commit"
           else
-            git commit -m "Data snapshot $(date -u -d '+3 hours 30 minutes' +'%Y-%m-%d %H:%M')"
+            export TZ='Asia/Tehran'
+            COMMIT_MSG="Data snapshot $(date +'%Y-%m-%d %H:%M')"
+            git commit -m "$COMMIT_MSG"
             git push
+            echo "✅ Committed and pushed: $COMMIT_MSG"
           fi
