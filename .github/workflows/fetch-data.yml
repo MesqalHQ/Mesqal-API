@@ -33,9 +33,17 @@ jobs:
           FIN_API="https://api.dastyar.io/express/financial-item"
           FIN_RESPONSE=$(curl -s --max-time 15 "$FIN_API" || true)
           
-          # Validate JSON
           if ! echo "$FIN_RESPONSE" | jq empty 2>/dev/null; then
             echo "❌ Invalid financial API response"
+            exit 1
+          fi
+          
+          # Fetch PAMP data
+          PAMP_API="https://amirmasoud.netlify.app/api/v1/pamp"
+          PAMP_RESPONSE=$(curl -s --max-time 15 "$PAMP_API" || true)
+          
+          if ! echo "$PAMP_RESPONSE" | jq empty 2>/dev/null; then
+            echo "❌ Invalid PAMP API response"
             exit 1
           fi
           
@@ -44,10 +52,11 @@ jobs:
             echo "[]" > "$FILE"
           fi
           
-          # Append snapshot (financial data only)
+          # Append snapshot with both financial and pamp data
           jq --arg time "$TIME" \
              --argjson financial "$FIN_RESPONSE" \
-             '. += [{"time": $time, "financial": $financial}]' \
+             --argjson pamp "$PAMP_RESPONSE" \
+             '. += [{"time": $time, "financial": $financial, "pamp": $pamp}]' \
              "$FILE" > tmp.json && mv tmp.json "$FILE"
           
           echo "✅ Saved snapshot for $DATE $TIME"
@@ -55,7 +64,6 @@ jobs:
       - name: Generate dates.json
         run: |
           cd data
-          # List all .json files (except dates.json), extract dates, sort descending
           ls -1 *.json 2>/dev/null | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$' | sed 's/\.json$//' | sort -r > dates.txt
           jq -R -s 'split("\n") | map(select(length > 0))' dates.txt > dates.json
           rm dates.txt
