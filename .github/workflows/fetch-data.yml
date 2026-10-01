@@ -38,21 +38,20 @@ jobs:
           trap 'rm -f "$FIN_TMP" "$PAMP_TMP" "$MERGE_TMP"' EXIT
           
           # ==========================================
-          # 1. FETCH FINANCIAL DATA (With Debugging)
+          # 1. FETCH FINANCIAL DATA (From Mesqal-Crawler GitHub Pages)
           # ==========================================
-          FIN_API="https://api.dastyar.io/express/financial-item"
-          echo "📡 Fetching financial data..."
+          # ⚠️ Update this URL if your repo name or org name is different
+          FIN_API="https://mesqalhq.github.io/Mesqal-Crawler/api/currencies.json"
+          echo "📡 Fetching financial data from GitHub Pages..."
           
-          # Capture HTTP status code and use a real browser User-Agent
-          HTTP_CODE=$(curl -s -o "$FIN_TMP" -w "%{http_code}" -L --max-time 15 \
-            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
-            "$FIN_API" || echo "000")
+          # Capture HTTP status code
+          HTTP_CODE=$(curl -s -o "$FIN_TMP" -w "%{http_code}" -L --max-time 15 "$FIN_API" || echo "000")
           
           echo "Financial API HTTP Code: $HTTP_CODE"
           
           if [ "$HTTP_CODE" != "200" ]; then
             echo "❌ Financial API failed! Response:"
-            cat "$FIN_TMP" | head -c 300
+            head -c 300 "$FIN_TMP"
             echo "null" > "$FIN_TMP" # Fallback to null so the script doesn't crash
           elif [ ! -s "$FIN_TMP" ]; then
             echo "❌ Financial API returned an empty body."
