@@ -31,11 +31,20 @@ jobs:
           
           # Fetch financial data
           FIN_API="https://api.dastyar.io/express/financial-item"
-          FIN_RESPONSE=$(curl -s --max-time 15 "$FIN_API" || true)
+          FIN_RESPONSE=$(curl -s "$FIN_API")
           
           # Validate JSON
           if ! echo "$FIN_RESPONSE" | jq empty 2>/dev/null; then
             echo "❌ Invalid financial API response"
+            exit 1
+          fi
+          
+          # Fetch PAMP data
+          PAMP_API="https://amirmasoud.netlify.app/api/v1/pamp"
+          PAMP_RESPONSE=$(curl -s "$PAMP_API")
+          
+          if ! echo "$PAMP_RESPONSE" | jq empty 2>/dev/null; then
+            echo "❌ Invalid PAMP API response"
             exit 1
           fi
           
@@ -44,10 +53,11 @@ jobs:
             echo "[]" > "$FILE"
           fi
           
-          # Append snapshot (financial data only)
+          # Append snapshot
           jq --arg time "$TIME" \
              --argjson financial "$FIN_RESPONSE" \
-             '. += [{"time": $time, "financial": $financial}]' \
+             --argjson pamp "$PAMP_RESPONSE" \
+             '. += [{"time": $time, "financial": $financial, "pamp": $pamp}]' \
              "$FILE" > tmp.json && mv tmp.json "$FILE"
           
           echo "✅ Saved snapshot for $DATE $TIME"
