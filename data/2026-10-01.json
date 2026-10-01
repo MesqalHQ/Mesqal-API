@@ -6959,5 +6959,733 @@
         }
       ]
     }
+  },
+  {
+    "time": "09:43:43",
+    "financial": [
+      {
+        "id": "24201",
+        "name": "دلار",
+        "en_name": "United States Dollar",
+        "price_toman": 255400,
+        "price_text": "۲۵۵,۴۰۰ تومان"
+      },
+      {
+        "id": "24210",
+        "name": "یورو",
+        "en_name": "Euro",
+        "price_toman": 289520,
+        "price_text": "۲۸۹,۵۲۰ تومان"
+      },
+      {
+        "id": "24427",
+        "name": "دینار عراق",
+        "en_name": "Iraqi Dinar",
+        "price_toman": 194.87,
+        "price_text": "۱۹۴.۸۷ تومان"
+      },
+      {
+        "id": "24230",
+        "name": "لیر ترکیه",
+        "en_name": "Turkish Lira",
+        "price_toman": 5210,
+        "price_text": "۵,۲۱۰ تومان"
+      },
+      {
+        "id": "24233",
+        "name": "درهم امارات",
+        "en_name": "United Arab Emirates Dirham",
+        "price_toman": 70200,
+        "price_text": "۷۰,۲۰۰ تومان"
+      },
+      {
+        "id": "27491",
+        "name": "افغانی",
+        "en_name": "Afghan Afghani",
+        "price_toman": 3990,
+        "price_text": "۳,۹۹۰ تومان"
+      },
+      {
+        "id": "24211",
+        "name": "پوند انگلیس",
+        "en_name": "Pound Sterling",
+        "price_toman": 338690,
+        "price_text": "۳۳۸,۶۹۰ تومان"
+      },
+      {
+        "id": "24204",
+        "name": "دلار کانادا",
+        "en_name": "Canadian Dollar",
+        "price_toman": 179590,
+        "price_text": "۱۷۹,۵۹۰ تومان"
+      },
+      {
+        "id": "24207",
+        "name": "یوان چین",
+        "en_name": "Chinese Yuan",
+        "price_toman": 38100,
+        "price_text": "۳۸,۱۰۰ تومان"
+      },
+      {
+        "id": "24411",
+        "name": "درام ارمنستان",
+        "en_name": "Armenian Dram",
+        "price_toman": 705,
+        "price_text": "۷۰۵ تومان"
+      },
+      {
+        "id": "24445",
+        "name": "ریال عمان",
+        "en_name": "Omani Rial",
+        "price_toman": 664240,
+        "price_text": "۶۶۴,۲۴۰ تومان"
+      },
+      {
+        "id": "24226",
+        "name": "روبل روسیه",
+        "en_name": "Russian Ruble",
+        "price_toman": 3065,
+        "price_text": "۳,۰۶۵ تومان"
+      },
+      {
+        "id": "24433",
+        "name": "دینار کویت",
+        "en_name": "Kuwaiti Dinar",
+        "price_toman": 826830,
+        "price_text": "۸۲۶,۸۳۰ تومان"
+      },
+      {
+        "id": "24202",
+        "name": "دلار استرالیا",
+        "en_name": "Australian Dollar",
+        "price_toman": 177470,
+        "price_text": "۱۷۷,۴۷۰ تومان"
+      },
+      {
+        "id": "24224",
+        "name": "روپیه پاکستان",
+        "en_name": "Pakistani Rupee",
+        "price_toman": 920,
+        "price_text": "۹۲۰ تومان"
+      },
+      {
+        "id": "24449",
+        "name": "ریال عربستان",
+        "en_name": "Saudi Riyal",
+        "price_toman": 68010,
+        "price_text": "۶۸,۰۱۰ تومان"
+      },
+      {
+        "id": "24227",
+        "name": "کرون سوئد",
+        "en_name": "Swedish Krona",
+        "price_toman": 25530,
+        "price_text": "۲۵,۵۳۰ تومان"
+      },
+      {
+        "id": "24216",
+        "name": "روپیه هند",
+        "en_name": "Indian Rupee",
+        "price_toman": 2660,
+        "price_text": "۲,۶۶۰ تومان"
+      },
+      {
+        "id": "24205",
+        "name": "فرانک سوییس",
+        "en_name": "Swiss Franc",
+        "price_toman": 305720,
+        "price_text": "۳۰۵,۷۲۰ تومان"
+      },
+      {
+        "id": "24217",
+        "name": "ین ژاپن",
+        "en_name": "Japanese Yen",
+        "price_toman": 1625,
+        "price_text": "۱,۶۲۵ تومان"
+      },
+      {
+        "id": "24412",
+        "name": "منات آذربایجان",
+        "en_name": "Azerbaijani Manat",
+        "price_toman": 150300,
+        "price_text": "۱۵۰,۳۰۰ تومان"
+      },
+      {
+        "id": "24218",
+        "name": "وون کره جنوبی",
+        "en_name": "South Korean Won",
+        "price_toman": 188.34,
+        "price_text": "۱۸۸.۳۴ تومان"
+      },
+      {
+        "id": "24423",
+        "name": "لاری گرجستان",
+        "en_name": "Georgian Lari",
+        "price_toman": 98040,
+        "price_text": "۹۸,۰۴۰ تومان"
+      },
+      {
+        "id": "24229",
+        "name": "بات تایلند",
+        "en_name": "Thai Baht",
+        "price_toman": 7600,
+        "price_text": "۷,۶۰۰ تومان"
+      },
+      {
+        "id": "24447",
+        "name": "ریال قطر",
+        "en_name": "Qatari Rial",
+        "price_toman": 70020,
+        "price_text": "۷۰,۰۲۰ تومان"
+      },
+      {
+        "id": "24221",
+        "name": "کرون نروژ",
+        "en_name": "Norwegian Krone",
+        "price_toman": 26580,
+        "price_text": "۲۶,۵۸۰ تومان"
+      },
+      {
+        "id": "24456",
+        "name": "بولیوار ونزوئلا",
+        "en_name": "Sovereign Bolivar",
+        "price_toman": 297.67,
+        "price_text": "۲۹۷.۶۷ تومان"
+      },
+      {
+        "id": "24209",
+        "name": "کرون دانمارک",
+        "en_name": "Danish Krone",
+        "price_toman": 38730,
+        "price_text": "۳۸,۷۳۰ تومان"
+      },
+      {
+        "id": "24408",
+        "name": "هریونیای اوکراین",
+        "en_name": "Ukrainian Hryvnia",
+        "price_toman": 5710,
+        "price_text": "۵,۷۱۰ تومان"
+      },
+      {
+        "id": "24220",
+        "name": "رینگیت مالزی",
+        "en_name": "Malaysian Ringgit",
+        "price_toman": 62590,
+        "price_text": "۶۲,۵۹۰ تومان"
+      },
+      {
+        "id": "24203",
+        "name": "رئال برزیل",
+        "en_name": "Brazilian Real",
+        "price_toman": 49300,
+        "price_text": "۴۹,۳۰۰ تومان"
+      },
+      {
+        "id": "24206",
+        "name": "پزوی شیلی",
+        "en_name": "Chilean Peso",
+        "price_toman": 262.19,
+        "price_text": "۲۶۲.۱۹ تومان"
+      },
+      {
+        "id": "24208",
+        "name": "کرون چک",
+        "en_name": "Czech Koruna",
+        "price_toman": 11850,
+        "price_text": "۱۱,۸۵۰ تومان"
+      },
+      {
+        "id": "24212",
+        "name": "دلار هنگ‌کنگ",
+        "en_name": "Hong Kong Dollar",
+        "price_toman": 32550,
+        "price_text": "۳۲,۵۵۰ تومان"
+      },
+      {
+        "id": "24213",
+        "name": "فورینت مجارستان",
+        "en_name": "Hungarian Forint",
+        "price_toman": 790,
+        "price_text": "۷۹۰ تومان"
+      },
+      {
+        "id": "24214",
+        "name": "روپیه اندونزی",
+        "en_name": "Indonesian Rupiah",
+        "price_toman": 14.25,
+        "price_text": "۱۴.۲۵ تومان"
+      },
+      {
+        "id": "24219",
+        "name": "پزوی مکزیک",
+        "en_name": "Mexican Peso",
+        "price_toman": 14120,
+        "price_text": "۱۴,۱۲۰ تومان"
+      },
+      {
+        "id": "24222",
+        "name": "دلار نیوزلند",
+        "en_name": "New Zealand Dollar",
+        "price_toman": 143870,
+        "price_text": "۱۴۳,۸۷۰ تومان"
+      },
+      {
+        "id": "24223",
+        "name": "پزوی فیلیپین",
+        "en_name": "Philippine Peso",
+        "price_toman": 4070,
+        "price_text": "۴,۰۷۰ تومان"
+      },
+      {
+        "id": "24225",
+        "name": "زلوتی لهستان",
+        "en_name": "Polish Złoty",
+        "price_toman": 66350,
+        "price_text": "۶۶,۳۵۰ تومان"
+      },
+      {
+        "id": "24228",
+        "name": "دلار سنگاپور",
+        "en_name": "Singapore Dollar",
+        "price_toman": 199890,
+        "price_text": "۱۹۹,۸۹۰ تومان"
+      },
+      {
+        "id": "24231",
+        "name": "دلار جدید تایوان",
+        "en_name": "New Taiwan Dollar",
+        "price_toman": 8010,
+        "price_text": "۸,۰۱۰ تومان"
+      },
+      {
+        "id": "24232",
+        "name": "راند آفریقای جنوبی",
+        "en_name": "South African Rand",
+        "price_toman": 15550,
+        "price_text": "۱۵,۵۵۰ تومان"
+      },
+      {
+        "id": "24234",
+        "name": "لو بلغارستان",
+        "en_name": "Bulgarian Lev",
+        "price_toman": 151710,
+        "price_text": "۱۵۱,۷۱۰ تومان"
+      },
+      {
+        "id": "24235",
+        "name": "کونای کرواسی",
+        "en_name": "Croatian Kuna",
+        "price_toman": 38430,
+        "price_text": "۳۸,۴۳۰ تومان"
+      },
+      {
+        "id": "24236",
+        "name": "روپیه موریس",
+        "en_name": "Mauritian Rupee",
+        "price_toman": 5350,
+        "price_text": "۵,۳۵۰ تومان"
+      },
+      {
+        "id": "24401",
+        "name": "لئوی رومانی",
+        "en_name": "Romanian Leu",
+        "price_toman": 54910,
+        "price_text": "۵۴,۹۱۰ تومان"
+      },
+      {
+        "id": "24403",
+        "name": "نایرای نیجریه",
+        "en_name": "Nigerian Naira",
+        "price_toman": 192.45,
+        "price_text": "۱۹۲.۴۵ تومان"
+      },
+      {
+        "id": "24404",
+        "name": "پزوی کلمبیا",
+        "en_name": "Colombian Peso",
+        "price_toman": 76.8,
+        "price_text": "۷۶.۸ تومان"
+      },
+      {
+        "id": "24405",
+        "name": "پزوی آرژانتین",
+        "en_name": "Argentine Peso",
+        "price_toman": 167.49,
+        "price_text": "۱۶۷.۴۹ تومان"
+      },
+      {
+        "id": "24406",
+        "name": "سل پرو",
+        "en_name": "Peruvian Sol",
+        "price_toman": 74150,
+        "price_text": "۷۴,۱۵۰ تومان"
+      },
+      {
+        "id": "24407",
+        "name": "دونگ ویتنام",
+        "en_name": "Vietnamese Dong",
+        "price_toman": 9.84,
+        "price_text": "۹.۸۴ تومان"
+      },
+      {
+        "id": "24409",
+        "name": "بولیویان بولیوی",
+        "en_name": "Bolivian Boliviano",
+        "price_toman": 21210,
+        "price_text": "۲۱,۲۱۰ تومان"
+      },
+      {
+        "id": "24410",
+        "name": "لک آلبانی",
+        "en_name": "Albanian Lek",
+        "price_toman": 3155,
+        "price_text": "۳,۱۵۵ تومان"
+      },
+      {
+        "id": "24413",
+        "name": "مارک بوسنی هرزگویین",
+        "en_name": "Bosnia-Herzegovina Convertible Mark",
+        "price_toman": 148280,
+        "price_text": "۱۴۸,۲۸۰ تومان"
+      },
+      {
+        "id": "24414",
+        "name": "تاکای بنگلادش",
+        "en_name": "Bangladeshi Taka",
+        "price_toman": 2075,
+        "price_text": "۲,۰۷۵ تومان"
+      },
+      {
+        "id": "24415",
+        "name": "دلار بحرین",
+        "en_name": "Bahraini Dinar",
+        "price_toman": 677110,
+        "price_text": "۶۷۷,۱۱۰ تومان"
+      },
+      {
+        "id": "24416",
+        "name": "دلار برمودا",
+        "en_name": "Bermudan Dollar",
+        "price_toman": 255400,
+        "price_text": "۲۵۵,۴۰۰ تومان"
+      },
+      {
+        "id": "24417",
+        "name": "روبل بلاروس",
+        "en_name": "Belarusian Ruble",
+        "price_toman": 84820,
+        "price_text": "۸۴,۸۲۰ تومان"
+      },
+      {
+        "id": "24418",
+        "name": "کولون کاستاریکا",
+        "en_name": "Costa Rican Colón",
+        "price_toman": 560,
+        "price_text": "۵۶۰ تومان"
+      },
+      {
+        "id": "24419",
+        "name": "پزوی کوبا",
+        "en_name": "Cuban Peso",
+        "price_toman": 10640,
+        "price_text": "۱۰,۶۴۰ تومان"
+      },
+      {
+        "id": "24420",
+        "name": "پزوی دومینیکو",
+        "en_name": "Dominican Peso",
+        "price_toman": 4295,
+        "price_text": "۴,۲۹۵ تومان"
+      },
+      {
+        "id": "24421",
+        "name": "دینار الجزیره",
+        "en_name": "Algerian Dinar",
+        "price_toman": 1910,
+        "price_text": "۱,۹۱۰ تومان"
+      },
+      {
+        "id": "24422",
+        "name": "پوند مصر",
+        "en_name": "Egyptian Pound",
+        "price_toman": 4915,
+        "price_text": "۴,۹۱۵ تومان"
+      },
+      {
+        "id": "24424",
+        "name": "کدی غنا",
+        "en_name": "Ghanaian Cedi",
+        "price_toman": 21810,
+        "price_text": "۲۱,۸۱۰ تومان"
+      },
+      {
+        "id": "24425",
+        "name": "کوئتزال گواتمالا",
+        "en_name": "Guatemalan Quetzal",
+        "price_toman": 33410,
+        "price_text": "۳۳,۴۱۰ تومان"
+      },
+      {
+        "id": "24426",
+        "name": "لمپیر هندوراس",
+        "en_name": "Honduran Lempira",
+        "price_toman": 9510,
+        "price_text": "۹,۵۱۰ تومان"
+      },
+      {
+        "id": "24428",
+        "name": "دلار جاماییکا",
+        "en_name": "Jamaican Dollar",
+        "price_toman": 1615,
+        "price_text": "۱,۶۱۵ تومان"
+      },
+      {
+        "id": "24429",
+        "name": "دینار اردن",
+        "en_name": "Jordanian Dinar",
+        "price_toman": 360230,
+        "price_text": "۳۶۰,۲۳۰ تومان"
+      },
+      {
+        "id": "24430",
+        "name": "شیلینگ کنیا",
+        "en_name": "Kenyan Shilling",
+        "price_toman": 1970,
+        "price_text": "۱,۹۷۰ تومان"
+      },
+      {
+        "id": "24431",
+        "name": "سم قرقیزستان",
+        "en_name": "Kyrgystani Som",
+        "price_toman": 2920,
+        "price_text": "۲,۹۲۰ تومان"
+      },
+      {
+        "id": "24432",
+        "name": "ریل کمبوجیه",
+        "en_name": "Cambodian Riel",
+        "price_toman": 62.95,
+        "price_text": "۶۲.۹۵ تومان"
+      },
+      {
+        "id": "24434",
+        "name": "تنگ قزاقستان",
+        "en_name": "Kazakhstani Tenge",
+        "price_toman": 580,
+        "price_text": "۵۸۰ تومان"
+      },
+      {
+        "id": "24435",
+        "name": "پوند لبنان",
+        "en_name": "Lebanese Pound",
+        "price_toman": 2.85,
+        "price_text": "۲.۸۵ تومان"
+      },
+      {
+        "id": "24436",
+        "name": "روپیه سریلانکا",
+        "en_name": "Sri Lankan Rupee",
+        "price_toman": 775,
+        "price_text": "۷۷۵ تومان"
+      },
+      {
+        "id": "24437",
+        "name": "درهم مراکش",
+        "en_name": "Moroccan Dirham",
+        "price_toman": 26320,
+        "price_text": "۲۶,۳۲۰ تومان"
+      },
+      {
+        "id": "24438",
+        "name": "لئوی مالدیو",
+        "en_name": "Moldovan Leu",
+        "price_toman": 14380,
+        "price_text": "۱۴,۳۸۰ تومان"
+      },
+      {
+        "id": "24439",
+        "name": "دنار مقدونیه",
+        "en_name": "Macedonian Denar",
+        "price_toman": 4710,
+        "price_text": "۴,۷۱۰ تومان"
+      },
+      {
+        "id": "24440",
+        "name": "کیات میانمار",
+        "en_name": "Myanma Kyat",
+        "price_toman": 121.64,
+        "price_text": "۱۲۱.۶۴ تومان"
+      },
+      {
+        "id": "24441",
+        "name": "توگریک مغولستان",
+        "en_name": "Mongolian Tugrik",
+        "price_toman": 70.96,
+        "price_text": "۷۰.۹۶ تومان"
+      },
+      {
+        "id": "24442",
+        "name": "دلار نامبیا",
+        "en_name": "Namibian Dollar",
+        "price_toman": 15590,
+        "price_text": "۱۵,۵۹۰ تومان"
+      },
+      {
+        "id": "24443",
+        "name": "کوردوبای نیکاراگوئه",
+        "en_name": "Nicaraguan Córdoba",
+        "price_toman": 6940,
+        "price_text": "۶,۹۴۰ تومان"
+      },
+      {
+        "id": "24444",
+        "name": "روپیه نپال",
+        "en_name": "Nepalese Rupee",
+        "price_toman": 1665,
+        "price_text": "۱,۶۶۵ تومان"
+      },
+      {
+        "id": "24446",
+        "name": "بالبوئای پاناما",
+        "en_name": "Panamanian Balboa",
+        "price_toman": 255290,
+        "price_text": "۲۵۵,۲۹۰ تومان"
+      },
+      {
+        "id": "24448",
+        "name": "دینار صربستان",
+        "en_name": "Serbian Dinar",
+        "price_toman": 2465,
+        "price_text": "۲,۴۶۵ تومان"
+      },
+      {
+        "id": "24451",
+        "name": "دلار تونس",
+        "en_name": "Tunisian Dinar",
+        "price_toman": 86080,
+        "price_text": "۸۶,۰۸۰ تومان"
+      },
+      {
+        "id": "24452",
+        "name": "دلار ترینیداد و توباگو",
+        "en_name": "Trinidad and Tobago Dollar",
+        "price_toman": 37630,
+        "price_text": "۳۷,۶۳۰ تومان"
+      },
+      {
+        "id": "24453",
+        "name": "شیلینگ اوگاندا",
+        "en_name": "Ugandan Shilling",
+        "price_toman": 65.13,
+        "price_text": "۶۵.۱۳ تومان"
+      },
+      {
+        "id": "24454",
+        "name": "پزوی اروگوئه",
+        "en_name": "Uruguayan Peso",
+        "price_toman": 6340,
+        "price_text": "۶,۳۴۰ تومان"
+      },
+      {
+        "id": "24455",
+        "name": "سم ازبکستان",
+        "en_name": "Uzbekistan Som",
+        "price_toman": 21.58,
+        "price_text": "۲۱.۵۸ تومان"
+      }
+    ],
+    "pamp": {
+      "meta": {
+        "source": "zcoinn.com",
+        "category": "gold-bar",
+        "brand": "PAMP",
+        "fetchedAt": "2026-10-01T06:13:51.939Z",
+        "count": 9,
+        "type": "scraped"
+      },
+      "items": [
+        {
+          "name": "شمش طلا 1 گرمی سوئیسی پمپ",
+          "weightGram": 1,
+          "price": 40600000,
+          "currency": "IRR_TOMAN",
+          "priceText": "40,600,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/1g-blue-copy.webp"
+        },
+        {
+          "name": "شمش طلا 2.5 گرمی سوئیسی پمپ",
+          "weightGram": 2.5,
+          "price": 96380000,
+          "currency": "IRR_TOMAN",
+          "priceText": "96,380,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/2.5-blue-copy.webp"
+        },
+        {
+          "name": "شمش طلا 5 گرمی سوئیسی پمپ",
+          "weightGram": 5,
+          "price": 184310000,
+          "currency": "IRR_TOMAN",
+          "priceText": "184,310,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/5g-blue-copy.webp"
+        },
+        {
+          "name": "شمش طلا 10 گرمی سوئیسی پمپ",
+          "weightGram": 10,
+          "price": 365230000,
+          "currency": "IRR_TOMAN",
+          "priceText": "365,230,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/1.2oz-blue-copy.webp"
+        },
+        {
+          "name": "شمش طلا نیم اونسی سوئیسی پمپ",
+          "weightGram": 15.55175,
+          "price": 562680000,
+          "currency": "IRR_TOMAN",
+          "priceText": "562,680,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/10g-blue-copy.webp"
+        },
+        {
+          "name": "شمش طلا 20 گرمی سوئیسی پمپ",
+          "weightGram": 20,
+          "price": 720320000,
+          "currency": "IRR_TOMAN",
+          "priceText": "720,320,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/20g-blue-copy.webp"
+        },
+        {
+          "name": "شمش طلا 1 اونسی سوئیسی پمپ (1oz)",
+          "weightGram": 31.1035,
+          "price": 1093810000,
+          "currency": "IRR_TOMAN",
+          "priceText": "1,093,810,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/12/1oz-blue-copy.webp"
+        },
+        {
+          "name": "شمش 50 گرمی سوئیسی PAMP",
+          "weightGram": 50,
+          "price": 1792350000,
+          "currency": "IRR_TOMAN",
+          "priceText": "1,792,350,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/50blue.png"
+        },
+        {
+          "name": "شمش 100 گرمی سوئیسی pamp",
+          "weightGram": 100,
+          "price": 3550890000,
+          "currency": "IRR_TOMAN",
+          "priceText": "3,550,890,000 تومان",
+          "link": "https://zcoinn.com/bullion_order/",
+          "image": "https://zcoinn.com/wp-content/uploads/2022/08/50blue.png"
+        }
+      ]
+    }
   }
 ]
