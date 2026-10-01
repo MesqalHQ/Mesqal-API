@@ -41,7 +41,7 @@ jobs:
           # 1. FETCH FINANCIAL DATA (From Mesqal-Crawler GitHub Pages)
           # ==========================================
           # ⚠️ Update this URL if your repo name or org name is different
-          FIN_API="https://mesqalhq.github.io/Mesqal-Crawler/api/currencies.json"
+          FIN_API="https://api.dastyar.io/express/financial-item"
           echo "📡 Fetching financial data from GitHub Pages..."
           
           # Capture HTTP status code
