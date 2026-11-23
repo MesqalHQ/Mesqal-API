@@ -2879,5 +2879,13 @@
       "error": "Failed to scrape PAMP gold bars",
       "message": "HTTP 418 reauthentication required"
     }
+  },
+  {
+    "time": "12:00:40",
+    "financial": null,
+    "pamp": {
+      "error": "Failed to scrape PAMP gold bars",
+      "message": "HTTP 418 reauthentication required"
+    }
   }
 ]
