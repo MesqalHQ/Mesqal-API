@@ -95,5 +95,13 @@
         }
       ]
     }
+  },
+  {
+    "time": "00:30:43",
+    "financial": null,
+    "pamp": {
+      "error": "Failed to scrape PAMP gold bars",
+      "message": "HTTP 418 reauthentication required"
+    }
   }
 ]
